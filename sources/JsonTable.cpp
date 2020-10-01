@@ -5,19 +5,40 @@
 #include "JsonTable.hpp"
 
 #include <fstream>
-JsonTable::JsonTable(const std::vector<Student>& students)
-    : _students(students) {}
+JsonTable::JsonTable()//const std::vector<Student>& students
+    : _students() {
+  //for (short i=0; i<4; i++) _symbols.push_back(5);
+          _symbols.push_back(4);
+          _symbols.push_back(5);
+          _symbols.push_back(3);
+          _symbols.push_back(4);
+}
 
 std::string JsonTable::print_table()
 {
-  std::string info;
+  set_spaces_number();
+  std::string separator="";
+  for (int i=0;  i<(int)_symbols.size(); i++){
+    separator += "|";
+    for (int t=0; t<_symbols[i]+2; t++){
+      separator += "-";
+    }
+  }
+  std::string words [4] =  {"name", "group", "avg", "debt"};
+  std::string title="|";
+  for (int i=0;  i<(int)_symbols.size(); i++){
+    title += formatted(words[i], _symbols[i]);
+  }
+  title += "\n";
+  separator += "|\n";
+  std::string info = title + separator;
   for (auto i = _students.begin();i<_students.cend();i++)
   {
-   // nlohmann::json j = "{ \"happy\": true, \"pi\": 3.141 }"_json;
-    info += i->name_string() + " ";
-    info += i->group_string() + " ";
-    info += i->avg_string() + " ";
-    info += i->debt_string() + " ";
+    info += "|" + formatted(i->name_string(), _symbols[0]);
+    info += formatted(i->group_string(), _symbols[1]);
+    info += formatted(i->avg_string(), _symbols[2]);
+    info += formatted(i->debt_string(), _symbols[3]) + "\n";
+    info += separator;
   }
   return info;
 }
@@ -41,4 +62,28 @@ void JsonTable::parse_string(std::string file_path)
 
   //std::string tmp = jstring;
 }
-JsonTable::JsonTable() {}
+
+void JsonTable::set_spaces_number()
+{
+  for (auto i=_students.cbegin(); i < _students.cend();i++) {
+    if ((int)i->name_string().size() > _symbols[0] )
+      _symbols[0] = i->name_string().size();  // two extra spaces
+    if ((int)i->group_string().size() > _symbols[1] )
+      _symbols[1] = i->group_string().size();
+    if ((int)i->avg_string().size() > _symbols[2] )
+      _symbols[2] = i->avg_string().size();
+    if ((int)i->debt_string().size() > _symbols[3] )
+      _symbols[3] = i->debt_string().size();
+  }
+}
+
+std::string JsonTable::formatted(std::string str, int number) {
+  std::string result = " ";
+  result += str;
+  for ( int i=0; i < number-(int)str.size(); i++)
+  {
+    result+=" ";
+  }
+  result += " |";
+  return result;
+}

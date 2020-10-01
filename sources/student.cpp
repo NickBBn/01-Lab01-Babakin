@@ -34,7 +34,7 @@ auto Student::get_avg(const json& j) -> std::any
 {
   if (j.is_null()) return nullptr;
   if (j.is_string()) return j.get<std::string>();
-  if (j.is_number_float()) return j.get<double>();
+  if (j.is_number_float()) return j.get<float>();
   if (j.is_number_integer()) return j.get<int>();
   return "invalid type";
 }
@@ -50,32 +50,43 @@ auto Student::get_debt(const json& j) -> std::any
   if (j.is_null()) return nullptr;
   if (j.is_string()) return j.get<std::string>();
   if (j.is_array()) return j.get<std::vector<std::string>>();
-  return "invalid type";
+  return "invalid type:json fault";
 }
 
-std::string Student::name_string() {
+std::string Student::name_string() const
+{
   return _name;
 }
-
-std::string Student::group_string()
+std::string Student::group_string() const
 {
   if (_group.type() == typeid(int)) return std::to_string(std::any_cast<int>(_group));
   if (_group.type() == typeid(float)) return std::to_string(std::any_cast<float>(_group));
   if (_group.type() == typeid(std::string)) return std::any_cast<std::string>(_group);
-  if (_group.type() == typeid(std::vector<std::string>))
+  return "invalid type";
+}
+std::string Student::avg_string() const
+{
+  if (_avg.type() == typeid(int)) return std::to_string(std::any_cast<int>(_avg));
+  if (_avg.type() == typeid(float_t)){
+    std::string tmp = std::to_string(std::any_cast<float>(_avg));
+    while (tmp.at(tmp.size()-1)=='0') tmp=tmp.substr(0, tmp.size()-1);
+    return tmp;
+   // return std::to_string(std::any_cast<float>(_avg));
+  }
+  if (_avg.type() == typeid(std::string)) return std::any_cast<std::string>(_avg);
+  return "invalid type";
+}
+std::string Student::debt_string() const
+{
+  if (_debt.type() == typeid(int)) return std::to_string(std::any_cast<int>(_debt));
+  if (_debt.type() == typeid(std::string)) return std::any_cast<std::string>(_debt);
+  if (_debt.type() == typeid(std::vector<std::string>))
   {
     int size;
-    size = std::any_cast<std::vector<std::string>>(_group).size();
+    size = std::any_cast<std::vector<std::string>>(_debt).size();
+  //  return "this debt is vector";
     return std::to_string(size);
   }
-  return "invalid type";
+  if (_debt.type() == typeid(std::nullptr_t)) return "null";
+  return "invalid debt type";
 }
-
-std::string Student::avg_string() {
-  if (_group.type() == typeid(int)) return std::to_string(std::any_cast<int>(_group));
-  if (_group.type() == typeid(float)) return std::to_string(std::any_cast<float>(_group));
-  if (_group.type() == typeid(std::string)) return std::any_cast<std::string>(_group);
-  return "invalid type";
-}
-
-std::string Student::debt_string() { return std::string(); }

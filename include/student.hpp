@@ -21,10 +21,10 @@ class Student {
   auto get_debt(const nlohmann::json& j) -> std::any;
  public:
   void from_json(const nlohmann::json& j);
-  std::string name_string ();
-  std::string group_string ();
-  std::string avg_string ();
-  std::string debt_string ();
+  std::string name_string() const;
+  std::string group_string() const;
+  std::string avg_string() const;
+  std::string debt_string() const;
  private:
   std::string _name;
   std::any _group;
