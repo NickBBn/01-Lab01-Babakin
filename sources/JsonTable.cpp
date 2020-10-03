@@ -42,16 +42,17 @@ std::string JsonTable::print_table()
   }
   return info;
 }
-void JsonTable::parse_string(std::string file_path)
-{
-  std::ifstream file(file_path);
-  if (!file) {
-    throw std::runtime_error{"unable to open json: " + file_path};
-  }
 
-  nlohmann::json data;
-  file >> data;
+void JsonTable::parse_string( nlohmann::json data)
+{
   int count=0;
+  if (!data.at("items").is_array())
+    throw std::string ("Incorrect json file: \"items\" is not array");
+  if (!data.at("_meta").at("count").is_number_integer()){
+    throw std::string ("Incorrect json file: wrong \"_meta\" type");
+  } else if (data.at("_meta").at("count").get<long unsigned>() != data.at("items").get<std::vector<nlohmann::json>>().size()) {
+    throw std::string ("Incorrect json file: \"items\" size doesn't match value of \"_meta\" at \"count\"");
+  }
   for (auto item = data.at("items").cbegin();
        item<data.at("items").cend();item++)
   {
@@ -86,4 +87,14 @@ std::string JsonTable::formatted(std::string str, int number) {
   }
   result += " |";
   return result;
+}
+void JsonTable::parse_file(std::string file_path)
+{
+  std::ifstream file(file_path, std::ifstream::in);
+  if (!file) {
+    throw std::string("Could not find json file by path: " + file_path);
+  }
+  nlohmann::json data;
+  file >> data;
+  parse_string(data);
 }

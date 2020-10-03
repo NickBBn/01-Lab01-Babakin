@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "name": "Antonov Oleg",
+      "group": 12,
+      "avg": "5",
+      "debt": "C"
+    },
+    {
+      "name": "Smorodin Dima",
+      "group": "9",
+      "avg": 4,
+      "debt": null
+    },
+    {
+      "name": "Kirov Slava",
+      "group": "RK6-31",
+      "avg": 4.95,
+      "debt": [
+        "Python",
+        "Bash"
+      ]
+    }
+  ],
+  "_meta": {
+    "count": 3
+  }
+}

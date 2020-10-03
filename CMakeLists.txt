@@ -16,10 +16,6 @@ set(
 include("tools/gate/cmake/HunterGate.cmake")
 
 HunterGate(
-#  URL "https://github.com/cpp-pm/hunter/archive/v0.23.218.tar.gz"
-#  SHA1 "9a3594a61227967fb92159339ba326701b287b19"
-#        URL "https://github.com/cpp-pm/hunter/archive/v0.16.15.tar.gz"
-#        SHA1 "6974c2150fc0d3b09de3ad1efcbf15d360647ffa"
         URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"    # URL к ядру Hunter
         SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
 )
@@ -33,14 +29,10 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 string(APPEND CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/GCCFIXGTEST.cmake")
 
 hunter_add_package(GTest)
-#hunter_add_package(Boost COMPONENTS filesystem regex)
 hunter_add_package(nlohmann_json)
-#hunter_add_package(nlohmann-json)
 
 find_package(nlohmann_json CONFIG REQUIRED)
-#find_package(nlohmann-json REQUIRED)
 find_package(GTest CONFIG REQUIRED)
-#find_package(Boost CONFIG REQUIRED filesystem regex)
 find_package(Threads REQUIRED)
 
 # TODO: change template word to project name and delete this comment
@@ -67,6 +59,7 @@ target_link_libraries(tests
         GTest::gtest
         nlohmann_json::nlohmann_json
         JSONparser)
+
 target_link_libraries(JSONparser
         nlohmann_json::nlohmann_json)
 

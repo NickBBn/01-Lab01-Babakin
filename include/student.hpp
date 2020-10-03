@@ -13,7 +13,6 @@ class Student {
   Student(){}
   Student(const std::string& name, const std::any& group, const std::any& avg,
           const std::any& debt);
-  int test_fun (const int a);
   virtual ~Student();
   auto get_name(const nlohmann::json& j) -> std::string;
   auto get_avg(const nlohmann::json& j) -> std::any;
