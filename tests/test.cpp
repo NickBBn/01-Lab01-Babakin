@@ -76,7 +76,7 @@ TEST(Invalid_input, invalid_group)
 
 TEST(Invalid_input, invalid_avg)
 {
-  std::string file_path = "..\\JSONfiles\\invalid_avg.json";
+  std::string file_path = "../JSONfiles/invalid_avg.json";
   JsonTable table;
   std::string result;
   try {
