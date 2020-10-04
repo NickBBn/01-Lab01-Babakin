@@ -4,12 +4,12 @@
 
 using nlohmann::json;
 
-Student::Student(const std::string& name, const std::any& group,
+/*Student::Student(const std::string& name, const std::any& group,
                  const std::any& avg, const std::any& debt)
     : _name(name),
       _group(group),
       _avg(avg),
-      _debt(debt) {}
+      _debt(debt) {}*/
 
 Student::~Student() {}
 
@@ -46,6 +46,7 @@ auto Student::get_group(const json& j) -> std::any
 auto Student::get_debt(const json& j) -> std::any
 {
   if (j.is_null()) return nullptr;
+  if (j.is_number_integer()) return j.get<int>();
   if (j.is_string()) return j.get<std::string>();
   if (j.is_array()) return j.get<std::vector<std::string>>();
   throw std::string("Incorrect json file: invalid debt");
@@ -59,8 +60,12 @@ std::string Student::group_string() const
 {
   if (_group.type() == typeid(int))
     return std::to_string(std::any_cast<int>(_group));
-  if (_group.type() == typeid(float))
-    return std::to_string(std::any_cast<float>(_group));
+  if (_group.type() == typeid(float)){
+    std::string tmp = std::to_string(std::any_cast<float>(_group));
+    while (tmp.at(tmp.size()-1) == '0')
+      tmp = tmp.substr(0, tmp.size()-1);
+    return tmp;
+  }
   if (_group.type() == typeid(std::string))
     return std::any_cast<std::string>(_group);
   return "invalid type";

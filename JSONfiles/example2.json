@@ -2,7 +2,7 @@
   "items": [
     {
       "name": "Antonov Oleg",
-      "group": 12,
+      "group": 1.2,
       "avg": "5",
       "debt": "C"
     },
@@ -16,10 +16,7 @@
       "name": "Kirov Slava",
       "group": "RK6-31",
       "avg": 4.95,
-      "debt": [
-        "Python",
-        "Bash"
-      ]
+      "debt": 2
     }
   ],
   "_meta": {

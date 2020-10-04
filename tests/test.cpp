@@ -37,7 +37,7 @@ TEST(Valid_input, file2)
   std:: string expected_table =
       "| name          | group  | avg  | debt |\n"
       "|---------------|--------|------|------|\n"
-      "| Antonov Oleg  | 12     | 5    | C    |\n"
+      "| Antonov Oleg  | 1.2    | 5    | C    |\n"
       "|---------------|--------|------|------|\n"
       "| Smorodin Dima | 9      | 4    | null |\n"
       "|---------------|--------|------|------|\n"
