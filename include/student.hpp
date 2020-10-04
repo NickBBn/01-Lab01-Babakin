@@ -1,7 +1,7 @@
 // Copyright 2018 Your Name <your_email>
 
-#ifndef INCLUDE_HEADER_HPP_
-#define INCLUDE_HEADER_HPP_
+#ifndef INCLUDE_STUDENT_HPP_
+#define INCLUDE_STUDENT_HPP_
 #include <any>
 #include <iostream>
 #include <string>
@@ -31,4 +31,4 @@ class Student {
   std::any _debt;
 };
 
-#endif // INCLUDE_HEADER_HPP_
+#endif // INCLUDE_STUDENT_HPP_

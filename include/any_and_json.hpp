@@ -1,5 +1,6 @@
-#ifndef INCLUDE_ANY_AND_JSON_SUPPORT_HPP_
-#define INCLUDE_ANY_AND_JSON_SUPPORT_HPP_
+//Copyright 2020 NickBBn
+#ifndef INCLUDE_ANY_AND_JSON_HPP_
+#define INCLUDE_ANY_AND_JSON_HPP_
 
 #include <nlohmann/json.hpp>
 #include <any>
@@ -32,7 +33,7 @@ struct adl_serializer<std::any>{
     if (j.is_array())
     {
       std::vector <std::string> tmpv;
-      for (json::const_iterator i = j.cbegin();i<j.cend();i++)
+      for (json::const_iterator i = j.cbegin(); i < j.cend(); i++)
       {
         std::string tmpstr = i.value();
         tmpv.push_back(tmpstr);
@@ -41,5 +42,5 @@ struct adl_serializer<std::any>{
     }
   }
 };
-}
-#endif
+}// namespace nlohmann
+#endif // INCLUDE_ANY_AND_JSON_HPP_

@@ -24,7 +24,7 @@ TEST(Valid_input, file1)
       "|---------------|--------|------|------|\n"
       "| Pertov Nikita | IU8-31 | 3.33 | 3    |\n"
       "|---------------|--------|------|------|\n";
-  EXPECT_EQ(result, expected_table) ;
+  EXPECT_EQ(result, expected_table);
 }
 
 TEST(Valid_input, file2)
@@ -43,7 +43,7 @@ TEST(Valid_input, file2)
       "|---------------|--------|------|------|\n"
       "| Kirov Slava   | RK6-31 | 4.95 | 2    |\n"
       "|---------------|--------|------|------|\n";
-  EXPECT_EQ(result, expected_table) ;
+  EXPECT_EQ(result, expected_table);
 }
 
 TEST(Invalid_input, invalid_name)
@@ -114,7 +114,8 @@ TEST(Invalid_input, invalid_path)
     std::cout << error << std::endl;
     result = error;
   }
-  EXPECT_EQ(result, "Could not find json file by path: ../JSONfiles/somepath.json");
+  EXPECT_EQ(result,
+            "Could not find json file by path: ../JSONfiles/somepath.json");
 }
 
 TEST(Invalid_input, invalid_items)
@@ -127,7 +128,7 @@ TEST(Invalid_input, invalid_items)
   }
   catch (std::string& error) {
     std::cout << error << std::endl;
-    result=error;
+    result = error;
   }
   EXPECT_EQ(result, "Incorrect json file: \"items\" is not array");
 }
@@ -142,7 +143,7 @@ TEST(Invalid_input, invalid_meta)
   }
   catch (std::string& error) {
     std::cout << error << std::endl;
-    result=error;
+    result = error;
   }
   EXPECT_EQ(result, "Incorrect json file: wrong \"_meta\" type");
 }
@@ -157,7 +158,8 @@ TEST(Invalid_input, invalid_size)
   }
   catch (std::string& error) {
     std::cout << error << std::endl;
-    result=error;
+    result = error;
   }
-  EXPECT_EQ(result,"Incorrect json file: \"items\" size doesn't match value of \"_meta\" at \"count\"");
+  EXPECT_EQ(result,"Incorrect json file: "
+            "\"items\" size doesn't match value of \"_meta\" at \"count\"");
 }
