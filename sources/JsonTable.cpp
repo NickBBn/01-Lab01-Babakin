@@ -30,7 +30,7 @@ std::string JsonTable::print_table()
   title += "\n";
   separator += "|\n";
   std::string info = title + separator;
-  for (auto i = _students.begin(); i<_students.cend(); i++)
+  for (auto i = _students.begin(); i < _students.cend(); i++)
   {
     info += "|" + formatted(i->name_string(), _symbols[0]);
     info += formatted(i->group_string(), _symbols[1]);

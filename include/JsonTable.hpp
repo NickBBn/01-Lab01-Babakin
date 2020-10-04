@@ -1,7 +1,7 @@
 //Copyright 2020 NickBBn
 
-#ifndef JSONPARSER_JSONTABLE_HPP
-#define JSONPARSER_JSONTABLE_HPP
+#ifndef INCLUDE_JSONTABLE_HPP
+#define INCLUDE_JSONTABLE_HPP
 
 #include <iostream>
 #include <vector>
@@ -21,4 +21,4 @@ class JsonTable {
   std::vector <int> _symbols;
 };
 
-#endif  // JSONPARSER_JSONTABLE_HPP
+#endif  // INCLUDE_JSONTABLE_HPP

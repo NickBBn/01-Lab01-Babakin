@@ -160,6 +160,6 @@ TEST(Invalid_input, invalid_size)
     std::cout << error << std::endl;
     result = error;
   }
-  EXPECT_EQ(result,"Incorrect json file: "
+  EXPECT_EQ(result, "Incorrect json file: "
             "\"items\" size doesn't match value of \"_meta\" at \"count\"");
 }
