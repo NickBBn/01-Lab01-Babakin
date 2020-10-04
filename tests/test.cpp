@@ -35,14 +35,14 @@ TEST(Valid_input, file2)
   std::string result = table.print_table();
   std::cout << result;
   std:: string expected_table =
-      "| name          | group  | avg  | debt |\n"
-      "|---------------|--------|------|------|\n"
-      "| Antonov Oleg  | 1.2    | 5    | C    |\n"
-      "|---------------|--------|------|------|\n"
-      "| Smorodin Dima | 9      | 4    | null |\n"
-      "|---------------|--------|------|------|\n"
-      "| Kirov Slava   | RK6-31 | 4.95 | 2    |\n"
-      "|---------------|--------|------|------|\n";
+      "| name          | group  | avg  | debt    |\n"
+      "|---------------|--------|------|---------|\n"
+      "| Antonov Oleg  | 1.2    | 5    | Windows |\n"
+      "|---------------|--------|------|---------|\n"
+      "| Smorodin Dima | 9      | 4    | null    |\n"
+      "|---------------|--------|------|---------|\n"
+      "| Kirov Slava   | RK6-31 | 4.95 | 2       |\n"
+      "|---------------|--------|------|---------|\n";
   EXPECT_EQ(result, expected_table);
 }
 
@@ -76,7 +76,7 @@ TEST(Invalid_input, invalid_group)
 
 TEST(Invalid_input, invalid_avg)
 {
-  std::string file_path = "../JSONfiles/invalid_avg.json";
+  std::string file_path = "..\\JSONfiles\\invalid_avg.json";
   JsonTable table;
   std::string result;
   try {
