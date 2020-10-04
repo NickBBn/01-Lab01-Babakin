@@ -60,44 +60,36 @@ std::string Student::group_string() const
 {
   if (_group.type() == typeid(int))
     return std::to_string(std::any_cast<int>(_group));
-  if (_group.type() == typeid(float)){
+  else if (_group.type() == typeid(float)){
     std::string tmp = std::to_string(std::any_cast<float>(_group));
     while (tmp.at(tmp.size()-1) == '0')
       tmp = tmp.substr(0, tmp.size()-1);
     return tmp;
   }
-  if (_group.type() == typeid(std::string))
-    return std::any_cast<std::string>(_group);
-  return "invalid type";
+  else return std::any_cast<std::string>(_group);
 }
 std::string Student::avg_string() const
 {
   if (_avg.type() == typeid(int))
     return std::to_string(std::any_cast<int>(_avg));
-  if (_avg.type() == typeid(float_t)){
+  else if (_avg.type() == typeid(float_t)){
     std::string tmp = std::to_string(std::any_cast<float>(_avg));
     while (tmp.at(tmp.size()-1) == '0')
       tmp = tmp.substr(0, tmp.size()-1);
     return tmp;
-   // return std::to_string(std::any_cast<float>(_avg));
-  }
-  if (_avg.type() == typeid(std::string))
-    return std::any_cast<std::string>(_avg);
-  return "invalid type";
+  } else return std::any_cast<std::string>(_avg);
 }
 std::string Student::debt_string() const
 {
   if (_debt.type() == typeid(int))
     return std::to_string(std::any_cast<int>(_debt));
-  if (_debt.type() == typeid(std::string))
-    return std::any_cast<std::string>(_debt);
-  if (_debt.type() == typeid(std::vector<std::string>))
+  else if (_debt.type() == typeid(std::vector<std::string>))
   {
     int size;
     size = std::any_cast<std::vector<std::string>>(_debt).size();
   //  return "this debt is vector";
     return std::to_string(size);
   }
-  if (_debt.type() == typeid(std::nullptr_t)) return "null";
-  return "invalid debt type";
+  else if (_debt.type() == typeid(std::nullptr_t)) return "null";
+  else return std::any_cast<std::string>(_debt);
 }
