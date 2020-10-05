@@ -102,5 +102,4 @@ std::string Student::debt_string() const
       return std::any_cast<std::string>(_debt);
     }
   }
-
 }
