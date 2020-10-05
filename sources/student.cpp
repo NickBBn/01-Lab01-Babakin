@@ -80,9 +80,7 @@ std::string Student::avg_string() const
     while (tmp.at(tmp.size()-1) == '0')
       tmp = tmp.substr(0, tmp.size()-1);
     return tmp;
-  }
-  else
-  {
+  } else {
     return std::any_cast<std::string>(_avg);
   }
 }
@@ -98,8 +96,8 @@ std::string Student::debt_string() const
     return std::to_string(size);
   } else {
     if (_debt.type() == typeid(std::nullptr_t)) return "null";
-    else return std::any_cast<std::string>(_debt);
+    else {
+      return std::any_cast<std::string>(_debt);
+    }
   }
-
-
 }
