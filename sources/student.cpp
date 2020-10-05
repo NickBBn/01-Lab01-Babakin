@@ -94,10 +94,13 @@ std::string Student::debt_string() const
     size = std::any_cast<std::vector<std::string>>(_debt).size();
   //  return "this debt is vector";
     return std::to_string(size);
-  } else if (_debt.type() == typeid(std::nullptr_t))
-  {
-    return "null";
   } else {
-    return std::any_cast<std::string>(_debt);
+    if (_debt.type() == typeid(std::nullptr_t))
+    {
+      return "null";
+    } else {
+      return std::any_cast<std::string>(_debt);
+    }
   }
+
 }
